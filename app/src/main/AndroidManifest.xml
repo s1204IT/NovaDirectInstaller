@@ -4,8 +4,6 @@
     package="jp.co.benesse.touch.setuplogin">
 
     <uses-permission android:name="jp.co.benesse.dcha.permission.ACCESS_SYSTEM" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
         android:label="DchaState Changer"

@@ -82,8 +82,6 @@ public class LoginSettingActivity extends Activity {
                     mDchaService.clearDefaultPreferredApp(QUICK_STEP);
                     // ローカルにコピーしたAPKを削除
                     mDchaService.deleteFile(NOVA_LOCAL_PATH);
-                    // DchaStateを戻す
-                    mDchaService.setSetupStatus(0);
                     // 再起動
                     mDchaService.rebootPad(0, null);
                 } catch (RemoteException ignored) {

@@ -16,7 +16,7 @@
 
 １，Nova Launcher のAPKをダウンロードします｡
 
-[**NovaLauncer_7.0.57*.apk*](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70057)
+<a href="https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70057"><b>NovaLauncher_7.0.57</b>.apk</a>
 
 <!--
 Neo / Next ：[**7.0.57**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70057)  
@@ -24,14 +24,14 @@ Neo / Next ：[**7.0.57**](https://teslacoilapps.com/tesladirect/download.pl?pac
 -->
 
 ２，次のリンクを開き､ ファイルとして保存します｡  
-[**test_enviroment_info.xml**](https://smiletablabo.github.io/NovaDirectInstaller/test_enviroment_info.xml)  
+[**test_environment_info.xml**](https://smiletablabo.github.io/NovaDirectInstaller/test_environment_info.xml)  
 右クリックして｢名前を付けて保存...｣  
 ![](https://user-images.githubusercontent.com/52069677/223977340-bf346a16-d8fb-4cec-aea0-16447a142f6b.png)  
 必ず ｢**ファイルの種類**｣ を確認して下さい｡
 
 ３，`NovaLauncher_x.x.xx.apk`を`NovaLauncher.apk` にファイル名を修正します｡
 
-４，SDカードの最上層に､ `test_enviroment_info.xml` と `NovaLauncher.apk` をコピーします｡
+４，SDカードの最上層に､ `test_environment_info.xml` と `NovaLauncher.apk` をコピーします｡
 
 ５，チャレンジパッドにmicroSDカードを挿入します｡
 

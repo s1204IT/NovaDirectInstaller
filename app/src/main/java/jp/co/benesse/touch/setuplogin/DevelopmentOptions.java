@@ -9,7 +9,12 @@ import static android.os.BenesseExtension.setDchaState;
 import static android.provider.Settings.*;
 import static android.provider.Settings.Global.*;
 
-public class Dev extends Activity {
+public class DevelopmentOptions extends Activity {
+
+    public void onBackPressed() {
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

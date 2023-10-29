@@ -2,62 +2,55 @@
 
 ## 警告
 
-このツールの使用によって起きた損害については保証しません｡  
-また､ 現時点では チャレンジパッド**３** には対応していません｡
+このツールの使用に依って生じた損害については一切責任を負いません｡
 
 ## 必要なもの
 
-- チャレンジパッド  Neo / Next  
+- チャレンジパッド ３ / Neo / Next  
   **※初期化直後の状態のものを使用して下さい**
 - microSDカード
 - SDカードを読み書き可能な端末
 
-## ファイルのコピー
+## セットアップ
 
-１，Nova Launcher のAPKをダウンロードします｡
+⒈ Nova Launcher のAPKをダウンロードします｡
 
-<a href="https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70057"><b>NovaLauncher_7.0.57</b>.apk</a>
+チャレンジパッド**Neo** / **Next** ：[**7.0.57**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70057)  
+チャレンジパッド**３**：[**6.2.19**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=62019)
 
-<!--
-Neo / Next ：[**7.0.57**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70057)  
-３：[**6.2.19**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=62019)
--->
+⒉ 次のリンクを開き､ ファイルとして保存します｡  
+[**test_environment_info.xml**](https://smiletablabo.github.io/NovaDirectInstaller/test_environment_info.xml)
 
-２，次のリンクを開き､ ファイルとして保存します｡  
-[**test_environment_info.xml**](https://smiletablabo.github.io/NovaDirectInstaller/test_environment_info.xml)  
-右クリックして｢名前を付けて保存...｣  
-![](https://user-images.githubusercontent.com/52069677/223977340-bf346a16-d8fb-4cec-aea0-16447a142f6b.png)  
-必ず ｢**ファイルの種類**｣ を確認して下さい｡
+⒊ SDカードの最上層に､ `test_environment_info.xml` と `NovaLauncher_x.x.xx.apk` をコピーします｡  
+※ **Nova Launcher** のAPKのファイル名は変えずにコピーしてください｡
 
-３，`NovaLauncher_x.x.xx.apk`を`NovaLauncher.apk` にファイル名を修正します｡
+⒋ チャレンジパッドにmicroSDカードを挿入します｡
 
-４，SDカードの最上層に､ `test_environment_info.xml` と `NovaLauncher.apk` をコピーします｡
-
-５，チャレンジパッドにmicroSDカードを挿入します｡
-
-６，ホーム画面の､ スタートボタンを押します｡
+⒌ ホーム画面の､ スタートボタンを押します｡
 
 ![](https://user-images.githubusercontent.com/52069677/164911100-959604e3-d1c9-4250-9b95-94fbb2b0de62.png)
 
-７，｢**わかった**｣ を押します｡
+⒍ ｢**わかった**｣ を押します｡
 
 USB または ACアダプターが接続されていないと続行できません｡  
 また､ バッテリー残量が50%未満だと続行できません｡  
 
-８，画面右下に黒文字で改造が有効になっている旨の文章が在る事を確認します｡  
+⒎ 画面右下に黒文字で改造が有効になっている旨の文章が在る事を確認します｡  
 
 ここで通常と表示が変わらない場合は､ microSDカードが認識出来ていないか､ ファイルが正しく設定されていません｡
 
 確認出来たら､ ｢**設定を始める**｣→｢**近くのネットワークから接続する**｣ からWi-Fiに接続します｡  
 接続後､ ｢**←もどる**｣→｢**次へ**｣→｢**次へ**｣と進みます｡
 
-９，アップデートの赤い進捗バーが１００％になり正常に続行すると以下のような画面が出ます｡  
+⒏ 正常に続行すると以下のような画面が出ます｡  
 
-![](https://github.com/SmileTabLabo/DchaStateChanger/assets/52069677/88e9874c-00f5-44d4-b03c-1787b3b54bbb)
-｢**この端末管理アプリを有効にする**｣を**即座に**選択してください｡  
-
+![](https://github.com/SmileTabLabo/NovaDirectInstaller/assets/52069677/1f06766d-5227-477b-b3ff-fe23d3d07c2c)
+指示通り､ そのままお待ちください｡  
 内部処理が終了後､ 自動的に再起動されます｡
 
-10，再起動後､ Nova Launcher の初期設定を行います
+⒐ 再起動後､ Nova Launcher の初期設定を行います｡  
+チャレンジパッド３の場合､ 起動時に｢ホームアプリを選択｣のポップアップが出るので､ ｢**Nova Launcher**｣を選択後､ ｢**常時**｣を選択して続行します｡
+
+---
 
 これで簡易的な改造は完了です｡

@@ -1,1 +1,1 @@
--keep class jp.co.benesse.**
+-keep class **

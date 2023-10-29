@@ -9,7 +9,6 @@ import android.os.IBinder;
 import android.os.RemoteException;
 
 import static android.app.admin.DevicePolicyManager.*;
-import static android.content.pm.PackageManager.*;
 import static android.os.Build.MODEL;
 
 import jp.co.benesse.dcha.dchaservice.IDchaService;
@@ -34,11 +33,6 @@ public class LoginSettingActivity extends Activity {
         final String NOVA7_SD_PATH = System.getenv("SECONDARY_STORAGE") + "/NovaLauncher_7.0.57.apk";
         final String NOVA_LOCAL_PATH = "/storage/emulated/0/Download/NovaLauncher.apk";
 
-        // BenesseExtensionが存在/正常に動作しないCT3ではアクティビティを無効にする
-        if (MODEL.equals("TAB-A03-BR3")) {
-            getPackageManager().setComponentEnabledSetting(new ComponentName(this, DevelopmentOptions.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-            getPackageManager().setComponentEnabledSetting(new ComponentName(this, DchaStateChanger.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-        }
         // 端末管理者を要求(任意)
         startActivity(new Intent(ACTION_ADD_DEVICE_ADMIN).putExtra(EXTRA_DEVICE_ADMIN, new ComponentName(this, DeviceAdminReceiver.class)).putExtra(EXTRA_ADD_EXPLANATION, "処理中です｡\nこのままお待ちください..."));
 

@@ -11,8 +11,8 @@ android {
         minSdk 24
         //noinspection ExpiredTargetSdkVersion
         targetSdk 22
-        versionCode 4
-        versionName "1.2.0"
+        versionCode 5
+        versionName "1.2.1"
     }
 
     signingConfigs {
@@ -41,6 +41,5 @@ android {
 }
 
 dependencies {
-    compileOnly files('libs/BenesseExtension.jar')
     implementation files('libs/DchaService.jar')
 }

@@ -10,7 +10,7 @@ import android.os.RemoteException;
 
 import static android.app.admin.DevicePolicyManager.*;
 import static android.content.pm.PackageManager.*;
-import static android.os.Build.*;
+import static android.os.Build.MODEL;
 
 import jp.co.benesse.dcha.dchaservice.IDchaService;
 

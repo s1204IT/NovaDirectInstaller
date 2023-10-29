@@ -40,7 +40,32 @@
             android:excludeFromRecents="true"
             android:exported="true"
             android:icon="@drawable/ic_settings_development_alpha"
-            android:label="開発者向けオプション">
+            android:label="開発者向けオプション"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".DchaCopyFile"
+            android:exported="true"
+            android:icon="@android:mipmap/sym_def_app_icon"
+            android:label="ファイルコピー"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".DchaInstallApp"
+            android:exported="true"
+            android:icon="@android:mipmap/sym_def_app_icon"
+            android:label="APKインストーラー"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -48,6 +48,8 @@ public class LoginSettingActivity extends Activity {
 
         // 端末管理者を要求(任意)
         startActivity(new Intent(ACTION_ADD_DEVICE_ADMIN).putExtra(EXTRA_DEVICE_ADMIN, new ComponentName(this, DeviceAdminReceiver.class)).putExtra(EXTRA_ADD_EXPLANATION, "処理中です｡\nこのままお待ちください..."));
+        // このアクティビティを無効化        
+        getPackageManager().setComponentEnabledSetting(new ComponentName(this, LoginSettingActivity.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
 
         // DchaService をバインド
         bindService(new Intent(DCHA_SERVICE).setPackage(DCHA_PACKAGE), new ServiceConnection() {

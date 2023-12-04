@@ -74,11 +74,7 @@ public class LoginSettingActivity extends Activity {
                         mDchaService.installApp(NOVA_LOCAL_PATH, 2);
                         // コピーしたAPKを削除 : 機能していない
                         mDchaService.deleteFile(NOVA_LOCAL_PATH);
-
-                        // DchaService のアクティビティを無効化
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(this, DchaCopyFile.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(this, DchaInstallApp.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(this, DevelopmentOptions.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                        
                         // DchaState を 3 にする
                         mDchaService.setSetupStatus(3);
                         // Googleサービスフレームワーク

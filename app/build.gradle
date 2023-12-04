@@ -41,5 +41,6 @@ android {
 }
 
 dependencies {
+    compileOnly files('libs/BenesseExtension.jar')
     implementation files('libs/DchaService.jar')
 }

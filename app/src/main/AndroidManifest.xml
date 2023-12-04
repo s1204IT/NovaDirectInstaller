@@ -38,6 +38,18 @@
         </activity>
 
         <activity
+            android:name=".RecentsActivity"
+            android:exported="true"
+            android:label="アプリ履歴"
+            android:launchMode="singleInstance"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".DevelopmentOptions"
             android:clearTaskOnLaunch="true"
             android:excludeFromRecents="true"

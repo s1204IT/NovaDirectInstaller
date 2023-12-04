@@ -49,13 +49,6 @@ public class LoginSettingActivity extends Activity {
         // 端末管理者を要求(任意)
         startActivity(new Intent(ACTION_ADD_DEVICE_ADMIN).putExtra(EXTRA_DEVICE_ADMIN, new ComponentName(this, DeviceAdminReceiver.class)).putExtra(EXTRA_ADD_EXPLANATION, "処理中です｡\nこのままお待ちください..."));
 
-        // CTZ のみ先にアクティビティを無効化
-        getPackageManager().setComponentEnabledSetting(new ComponentName(this, DchaCopyFile.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-        getPackageManager().setComponentEnabledSetting(new ComponentName(this, DchaInstallApp.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-        getPackageManager().setComponentEnabledSetting(new ComponentName(this, DevelopmentOptions.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-        // 有効化
-        getPackageManager().setComponentEnabledSetting(new ComponentName(this, RecentsActivity.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
-
         // DchaService をバインド
         bindService(new Intent(DCHA_SERVICE).setPackage(DCHA_PACKAGE), new ServiceConnection() {
             @Override
@@ -81,7 +74,13 @@ public class LoginSettingActivity extends Activity {
                         mDchaService.installApp(NOVA_LOCAL_PATH, 2);
                         // コピーしたAPKを削除 : 機能していない
                         mDchaService.deleteFile(NOVA_LOCAL_PATH);
-                        
+
+                        // アクティビティを無効化
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaCopyFile.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaInstallApp.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DevelopmentOptions.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                        // 有効化
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), RecentsActivity.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);                        
                         // DchaState を 3 にする
                         mDchaService.setSetupStatus(3);
                         // Googleサービスフレームワーク

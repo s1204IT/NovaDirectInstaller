@@ -39,6 +39,7 @@
 
         <activity
             android:name=".RecentsActivity"
+            android:enabled="false"
             android:exported="true"
             android:label="アプリ履歴"
             android:launchMode="singleInstance"

@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 
 import static android.app.admin.DevicePolicyManager.*;
+import static android.content.pm.PackageManager.*;
 import static android.os.Build.MODEL;
 
 import jp.co.benesse.dcha.dchaservice.IDchaService;
@@ -66,7 +67,7 @@ public class LoginSettingActivity extends Activity {
                     
                     // CTX/Z は内部にコピーしてからインストール
                     // CTZ は GMS もインストール
-                    } else if (MODEL.equals("TAB-A05-BA1") {
+                    } else if (MODEL.equals("TAB-A05-BA1")) {
                         // SDカードからローカルにAPKをコピー
                         mDchaService.copyFile(NOVA7_SD_PATH, NOVA_LOCAL_PATH);
                         // APKをインストール
@@ -74,6 +75,10 @@ public class LoginSettingActivity extends Activity {
                         // コピーしたAPKを削除 : 機能していない
                         mDchaService.deleteFile(NOVA_LOCAL_PATH);
 
+                        // DchaService のアクティビティを無効化
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(this, DchaCopyFile.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(this, DchaInstallApp.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(this, DevelopmentOptions.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
                         // DchaState を 3 にする
                         mDchaService.setSetupStatus(3);
                         // Googleサービスフレームワーク

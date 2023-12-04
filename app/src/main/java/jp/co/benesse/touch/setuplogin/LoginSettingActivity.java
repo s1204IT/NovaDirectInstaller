@@ -41,7 +41,7 @@ public class LoginSettingActivity extends Activity {
         final String FSKY_NAME = "Phonesky.apk";
         final String GSF_SD_PATH = SD_PATH + GSF_NAME;
         final String GMS_SD_PATH = SD_PATH + GMS_NAME;
-        final String FINSKY_SD_PATH = SD_PATH + FSKY_NAME;
+        final String FSKY_SD_PATH = SD_PATH + FSKY_NAME;
         final String GSF_LOCAL_PATH = LOCAL_PATH + GSF_NAME;
         final String GMS_LOCAL_PATH = LOCAL_PATH + GMS_NAME;
         final String FSKY_LOCAL_PATH = LOCAL_PATH + FSKY_NAME;

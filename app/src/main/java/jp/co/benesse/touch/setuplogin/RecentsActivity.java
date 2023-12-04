@@ -9,7 +9,7 @@ public class RecentsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         finishAndRemoveTask();
-        putInt(this, "hide_navigation_bar", 0);
+        putInt(getContentResolver(), "hide_navigation_bar", 0);
         startActivity(new Intent().setClassName("com.android.launcher3", "com.android.quickstep.RecentsActivity"));
     }
 }

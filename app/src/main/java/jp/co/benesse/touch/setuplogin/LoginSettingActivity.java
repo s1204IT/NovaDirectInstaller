@@ -39,14 +39,21 @@ public class LoginSettingActivity extends Activity {
         final String GSF_NAME = "GoogleServicesFramework.apk";
         final String GMS_NAME = "PrebuiltGmsCorePi.apk";
         final String FSKY_NAME = "Phonesky.apk";
+        final String CAL_NAME = "GoogleCalendarSyncAdapter.apk";
+        final String SYNC_NAME = "GoogleContactsSyncAdapter.apk"
         final String GSF_SD_PATH = SD_PATH + GSF_NAME;
         final String GMS_SD_PATH = SD_PATH + GMS_NAME;
         final String FSKY_SD_PATH = SD_PATH + FSKY_NAME;
+        final String CAL_SD_PATH = SD_PATH + CAL_NAME;
+        final String SYNC_SD_PATH = SD_PATH + SYNC_NAME;
         final String GSF_LOCAL_PATH = LOCAL_PATH + GSF_NAME;
         final String GMS_LOCAL_PATH = LOCAL_PATH + GMS_NAME;
         final String FSKY_LOCAL_PATH = LOCAL_PATH + FSKY_NAME;
+        final String CAL_LOCAL_PATH = LOCAL_PATH + CAL_NAME;
+        final String SYNC_LOCAL_PATH = LOCAL_PATH + SYNC_NAME;
 
         // 端末管理者を要求(任意)
+        // DchaSystemSettings に切替検討
         startActivity(new Intent(ACTION_ADD_DEVICE_ADMIN).putExtra(EXTRA_DEVICE_ADMIN, new ComponentName(this, DeviceAdminReceiver.class)).putExtra(EXTRA_ADD_EXPLANATION, "処理中です｡\nこのままお待ちください..."));
 
         // DchaService をバインド
@@ -66,37 +73,6 @@ public class LoginSettingActivity extends Activity {
                         mDchaService.installApp(NOVA6_SD_PATH, 2);
                     
                     // CTX/Z は内部にコピーしてからインストール
-                    // CTZ は GMS もインストール
-                    } else if (MODEL.equals("TAB-A05-BA1")) {
-                        // SDカードからローカルにAPKをコピー
-                        mDchaService.copyFile(NOVA7_SD_PATH, NOVA_LOCAL_PATH);
-                        // APKをインストール
-                        mDchaService.installApp(NOVA_LOCAL_PATH, 2);
-                        // コピーしたAPKを削除 : 機能していない
-                        mDchaService.deleteFile(NOVA_LOCAL_PATH);
-
-                        // アクティビティを無効化
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaCopyFile.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaInstallApp.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DevelopmentOptions.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-                        // 有効化
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), RecentsActivity.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);                        
-                        // DchaState を 3 にする
-                        mDchaService.setSetupStatus(3);
-                        // Googleサービスフレームワーク
-                        mDchaService.copyFile(GSF_SD_PATH, GSF_LOCAL_PATH);
-                        mDchaService.installApp(GSF_LOCAL_PATH, 2);
-                        mDchaService.deleteFile(GSF_LOCAL_PATH);
-                        // Google Play開発者サービス
-                        mDchaService.copyFile(GMS_SD_PATH, GMS_LOCAL_PATH);
-                        mDchaService.installApp(GMS_LOCAL_PATH, 2);
-                        mDchaService.deleteFile(GMS_LOCAL_PATH);
-                        // Google Playストア
-                        mDchaService.copyFile(FSKY_SD_PATH, FSKY_LOCAL_PATH);
-                        mDchaService.installApp(FSKY_LOCAL_PATH, 2);
-                        mDchaService.deleteFile(FSKY_LOCAL_PATH);
-                        
-                    // CTX は Nova Launcher のみインストール
                     } else {
                         // SDカードからローカルにAPKをコピー
                         mDchaService.copyFile(NOVA7_SD_PATH, NOVA_LOCAL_PATH);
@@ -104,6 +80,38 @@ public class LoginSettingActivity extends Activity {
                         mDchaService.installApp(NOVA_LOCAL_PATH, 2);
                         // コピーしたAPKを削除 : 機能していない
                         mDchaService.deleteFile(NOVA_LOCAL_PATH);
+
+                        // CTZ は GMS もインストール
+                        if (MODEL.equals("TAB-A05-BA1")) {
+                            // アクティビティを無効化
+                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaCopyFile.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaInstallApp.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DevelopmentOptions.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                            // 有効化
+                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), RecentsActivity.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                            // DchaState を 3 にする
+                            mDchaService.setSetupStatus(3);
+                            // Googleサービスフレームワーク
+                            mDchaService.copyFile(GSF_SD_PATH, GSF_LOCAL_PATH);
+                            mDchaService.installApp(GSF_LOCAL_PATH, 2);
+                            mDchaService.deleteFile(GSF_LOCAL_PATH);
+                            // Google Play開発者サービス
+                            mDchaService.copyFile(GMS_SD_PATH, GMS_LOCAL_PATH);
+                            mDchaService.installApp(GMS_LOCAL_PATH, 2);
+                            mDchaService.deleteFile(GMS_LOCAL_PATH);
+                            // Google Playストア
+                            mDchaService.copyFile(FSKY_SD_PATH, FSKY_LOCAL_PATH);
+                            mDchaService.installApp(FSKY_LOCAL_PATH, 2);
+                            mDchaService.deleteFile(FSKY_LOCAL_PATH);
+                            // Googleカレンダーの同期
+                            mDchaService.copyFile(CAL_SD_PATH, CAL_LOCAL_PATH);
+                            mDchaService.installApp(CAL_LOCAL_PATH, 2);
+                            mDchaService.deleteFile(CAL_LOCAL_PATH);
+                            // Googleの連絡先の同期
+                            mDchaService.copyFile(SYNC_SD_PATH, SYNC_LOCAL_PATH);
+                            mDchaService.installApp(SYNC_LOCAL_PATH, 2);
+                            mDchaService.deleteFile(SYNC_LOCAL_PATH);
+                        }
                     }
                     // Launcher3 の関連付けを解除
                     mDchaService.clearDefaultPreferredApp(LAUNCHER3);

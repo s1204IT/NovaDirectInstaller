@@ -40,7 +40,7 @@ public class LoginSettingActivity extends Activity {
         final String GMS_NAME = "PrebuiltGmsCorePi.apk";
         final String FSKY_NAME = "Phonesky.apk";
         final String CAL_NAME = "GoogleCalendarSyncAdapter.apk";
-        final String SYNC_NAME = "GoogleContactsSyncAdapter.apk"
+        final String SYNC_NAME = "GoogleContactsSyncAdapter.apk";
         final String GSF_SD_PATH = SD_PATH + GSF_NAME;
         final String GMS_SD_PATH = SD_PATH + GMS_NAME;
         final String FSKY_SD_PATH = SD_PATH + FSKY_NAME;

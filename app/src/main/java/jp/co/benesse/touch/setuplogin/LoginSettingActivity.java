@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 
-import static android.app.admin.DevicePolicyManager.*;
 import static android.content.pm.PackageManager.*;
 import static android.os.Build.MODEL;
 
@@ -27,6 +26,8 @@ public class LoginSettingActivity extends Activity {
 
         final String DCHA_PACKAGE = "jp.co.benesse.dcha.dchaservice";
         final String DCHA_SERVICE = DCHA_PACKAGE + ".DchaService";
+        final String DSS_PACKAGE = "jp.co.benese.dcha.dchasystemsettings";
+        final String DSS_ACTIVITY = DSS_PACKAGE + ".TabletInfoSettingActivity";
         final String LAUNCHER3 = "com.android.launcher3";
         final String NOVA_PACKAGE = "com.teslacoilsw.launcher";
         final String LOCAL_PATH = "/storage/emulated/0/Download/";
@@ -52,9 +53,8 @@ public class LoginSettingActivity extends Activity {
         final String CAL_LOCAL_PATH = LOCAL_PATH + CAL_NAME;
         final String SYNC_LOCAL_PATH = LOCAL_PATH + SYNC_NAME;
 
-        // 端末管理者を要求(任意)
-        // DchaSystemSettings に切替検討
-        startActivity(new Intent(ACTION_ADD_DEVICE_ADMIN).putExtra(EXTRA_DEVICE_ADMIN, new ComponentName(this, DeviceAdminReceiver.class)).putExtra(EXTRA_ADD_EXPLANATION, "処理中です｡\nこのままお待ちください..."));
+        // DchaSystemSettings を呼び出し (何でも良い)
+        startActivity(new Intent().setClassName(DSS_PACKAGE, DSS_ACTIVITY));
 
         // DchaService をバインド
         bindService(new Intent(DCHA_SERVICE).setPackage(DCHA_PACKAGE), new ServiceConnection() {

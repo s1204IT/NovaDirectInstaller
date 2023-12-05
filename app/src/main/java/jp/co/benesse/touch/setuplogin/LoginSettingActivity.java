@@ -97,6 +97,7 @@ public class LoginSettingActivity extends Activity {
                             // 有効化
                             getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), RecentsActivity.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
                             getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), BrightnessDialog.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaStateReceiver.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
                             // DchaState を 3 にする
                             mDchaService.setSetupStatus(3);
                             // Googleサービスフレームワーク

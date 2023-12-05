@@ -71,7 +71,13 @@ public class LoginSettingActivity extends Activity {
                     if (MODEL.equals("TAB-A03-BR3")) {
                         // APKをインストール
                         mDchaService.installApp(NOVA6_SD_PATH, 2);
-                    
+                        // アクティビティを無効化
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaStateChanger.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DevelopmentOptions.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                        // 有効化
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaStateChanger3.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DevelopmentOptions3.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+
                     // CTX/Z は内部にコピーしてからインストール
                     } else {
                         // SDカードからローカルにAPKをコピー

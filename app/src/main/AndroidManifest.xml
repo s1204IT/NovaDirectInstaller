@@ -7,6 +7,7 @@
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> 
 
     <application
         android:label="DchaState Changer"
@@ -128,6 +129,17 @@
             </intent-filter>
         </activity>
 
+        <receiver
+            android:name=".DchaStateReceiver"
+            android:enabled="false"
+            android:exported="true"
+            android:label="Force put DchaState for 3">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        
         <receiver
             android:name=".DeviceAdminReceiver"
             android:exported="false"

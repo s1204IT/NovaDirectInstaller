@@ -51,6 +51,19 @@
         </activity>
 
         <activity
+            android:name=".BrightnessDialog"
+            android:enabled="false"
+            android:exported="true"
+            android:label="画面の明るさ"
+            android:launchMode="singleInstance"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".DevelopmentOptions"
             android:clearTaskOnLaunch="true"
             android:excludeFromRecents="true"

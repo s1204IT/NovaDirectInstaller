@@ -9,9 +9,8 @@ import static android.os.BenesseExtension.setDchaState;
 import static android.provider.Settings.*;
 import static android.provider.Settings.Global.*;
 
-public class Dev extends Activity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+public class DevelopmentOptions extends Activity {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setDchaState(3);
         finishAndRemoveTask();

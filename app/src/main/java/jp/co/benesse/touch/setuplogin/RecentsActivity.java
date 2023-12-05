@@ -8,7 +8,7 @@ import static android.provider.Settings.System.putInt;
 public class RecentsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        finishAndRemoveTask();
+        finish();
         putInt(getContentResolver(), "hide_navigation_bar", 0);
         startActivity(new Intent().setClassName("com.android.launcher3", "com.android.quickstep.RecentsActivity"));
     }

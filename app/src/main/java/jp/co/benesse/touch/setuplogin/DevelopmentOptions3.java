@@ -9,7 +9,7 @@ import android.provider.Settings.System;
 import static android.net.Uri.parse;
 import static android.provider.Settings.Global.*;
 
-public class DevelopmentOptions extends Activity {
+public class DevelopmentOptions3 extends Activity {
 
     @Override
     public void onBackPressed() {

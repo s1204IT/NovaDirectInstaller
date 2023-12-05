@@ -24,6 +24,8 @@
 - [**GoogleServicesFramework**.apk](https://subcontent.s1204.me/android/GMS-Pie/GoogleServicesFramework.apk)
 - [**PrebuiltGmsCorePi**.apk](https://subcontent.s1204.me/android/GMS-Pie/PrebuiltGmsCorePi.apk)
 - [**Phonesky**.apk](https://subcontent.s1204.me/android/GMS-Pie/Phonesky.apk)
+- [**GoogleCalendarSyncAdapter**.apk](https://subcontent.s1204.me/android/GMS-Pie/GoogleCalendarSyncAdapter.apk)
+- [**GoogleContactsSyncAdapter**.apk](https://subcontent.s1204.me/android/GMS-Pie/GoogleContactsSyncAdapter.apk)
 
 ⒉ 次のリンクを開き､ ファイルとして保存します｡  
 [**test_environment_info.xml**](https://smiletablabo.github.io/NovaDirectInstaller/test_environment_info.xml)

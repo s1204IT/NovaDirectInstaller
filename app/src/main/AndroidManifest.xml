@@ -132,8 +132,7 @@
         <receiver
             android:name=".DchaStateReceiver"
             android:enabled="false"
-            android:exported="true"
-            android:label="Force put DchaState for 3">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />

@@ -4,6 +4,7 @@
     package="jp.co.benesse.touch.setuplogin">
 
     <uses-permission android:name="jp.co.benesse.dcha.permission.ACCESS_SYSTEM" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
@@ -47,32 +48,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".RecentsActivity"
-            android:enabled="false"
-            android:exported="true"
-            android:label="アプリ履歴"
-            android:launchMode="singleInstance"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".BrightnessDialog"
-            android:enabled="false"
-            android:exported="true"
-            android:label="画面の明るさ"
-            android:launchMode="singleInstance"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 

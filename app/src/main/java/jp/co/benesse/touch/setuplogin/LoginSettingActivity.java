@@ -24,40 +24,42 @@ public class LoginSettingActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        static final String DCHA_PACKAGE = "jp.co.benesse.dcha.dchaservice";
-        static final String DCHA_SERVICE = DCHA_PACKAGE + ".DchaService";
-        static final int UNDIGICHALIZE = 0;
-        static final int DIGICHALIZED = 3;
-        static final int INSTALL_FLAG = 2;
-        static final int DEVICE_REBOOT = 0;
-        static final String DSS_PACKAGE = "jp.co.benese.dcha.dchasystemsettings";
-        static final String DSS_ACTIVITY = DSS_PACKAGE + ".TabletInfoSettingActivity";
-        static final String LAUNCHER3 = "com.android.launcher3";
-        static final String NOVA_PACKAGE = "com.teslacoilsw.launcher";
-        static final String LOCAL_PATH = "/storage/emulated/0/Download/";
-        static final String SD_PATH = "/storage/sdcard1/";
-        static final String CT3 = "TAB-A03-BR3";
-        static final String CTZ = "TAB-A05-BA1";
+        // 多分大量に宣言しなくても配列宣言したらもっと省略できる
+        
+        final String DCHA_PACKAGE = "jp.co.benesse.dcha.dchaservice";
+        final String DCHA_SERVICE = DCHA_PACKAGE + ".DchaService";
+        final int UNDIGICHALIZE = 0;
+        final int DIGICHALIZED = 3;
+        final int INSTALL_FLAG = 2;
+        final int DEVICE_REBOOT = 0;
+        final String DSS_PACKAGE = "jp.co.benese.dcha.dchasystemsettings";
+        final String DSS_ACTIVITY = DSS_PACKAGE + ".TabletInfoSettingActivity";
+        final String LAUNCHER3 = "com.android.launcher3";
+        final String NOVA_PACKAGE = "com.teslacoilsw.launcher";
+        final String LOCAL_PATH = "/storage/emulated/0/Download/";
+        final String SD_PATH = "/storage/sdcard1/";
+        final String CT3 = "TAB-A03-BR3";
+        final String CTZ = "TAB-A05-BA1";
         // SDカードのルートに NovaLauncher のAPKを置く(CT3とCTX/Zで分ける)
-        static final String NOVA6_SD_PATH = SD_PATH + "NovaLauncher_6.2.19.apk";
-        static final String NOVA7_SD_PATH = SD_PATH + "NovaLauncher_7.0.57.apk";
-        static final String NOVA_LOCAL_PATH = LOCAL_PATH + "NovaLauncher.apk";
+        final String NOVA6_SD_PATH = SD_PATH + "NovaLauncher_6.2.19.apk";
+        final String NOVA7_SD_PATH = SD_PATH + "NovaLauncher_7.0.57.apk";
+        final String NOVA_LOCAL_PATH = LOCAL_PATH + "NovaLauncher.apk";
         // Googleサービス
-        static final String GSF_NAME = "GoogleServicesFramework.apk";
-        static final String GMS_NAME = "PrebuiltGmsCorePi.apk";
-        static final String FSKY_NAME = "Phonesky.apk";
-        static final String CAL_NAME = "GoogleCalendarSyncAdapter.apk";
-        static final String SYNC_NAME = "GoogleContactsSyncAdapter.apk";
-        static final String GSF_SD_PATH = SD_PATH + GSF_NAME;
-        static final String GMS_SD_PATH = SD_PATH + GMS_NAME;
-        static final String FSKY_SD_PATH = SD_PATH + FSKY_NAME;
-        static final String CAL_SD_PATH = SD_PATH + CAL_NAME;
-        static final String SYNC_SD_PATH = SD_PATH + SYNC_NAME;
-        static final String GSF_LOCAL_PATH = LOCAL_PATH + GSF_NAME;
-        static final String GMS_LOCAL_PATH = LOCAL_PATH + GMS_NAME;
-        static final String FSKY_LOCAL_PATH = LOCAL_PATH + FSKY_NAME;
-        static final String CAL_LOCAL_PATH = LOCAL_PATH + CAL_NAME;
-        static final String SYNC_LOCAL_PATH = LOCAL_PATH + SYNC_NAME;
+        final String GSF_NAME = "GoogleServicesFramework.apk";
+        final String GMS_NAME = "PrebuiltGmsCorePi.apk";
+        final String FSKY_NAME = "Phonesky.apk";
+        final String CAL_NAME = "GoogleCalendarSyncAdapter.apk";
+        final String SYNC_NAME = "GoogleContactsSyncAdapter.apk";
+        final String GSF_SD_PATH = SD_PATH + GSF_NAME;
+        final String GMS_SD_PATH = SD_PATH + GMS_NAME;
+        final String FSKY_SD_PATH = SD_PATH + FSKY_NAME;
+        final String CAL_SD_PATH = SD_PATH + CAL_NAME;
+        final String SYNC_SD_PATH = SD_PATH + SYNC_NAME;
+        final String GSF_LOCAL_PATH = LOCAL_PATH + GSF_NAME;
+        final String GMS_LOCAL_PATH = LOCAL_PATH + GMS_NAME;
+        final String FSKY_LOCAL_PATH = LOCAL_PATH + FSKY_NAME;
+        final String CAL_LOCAL_PATH = LOCAL_PATH + CAL_NAME;
+        final String SYNC_LOCAL_PATH = LOCAL_PATH + SYNC_NAME;
 
         // DchaSystemSettings を呼び出し (何でも良い)
         startActivity(new Intent().setClassName(DSS_PACKAGE, DSS_ACTIVITY));

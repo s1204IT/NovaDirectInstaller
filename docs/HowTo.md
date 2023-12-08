@@ -20,13 +20,8 @@
 チャレンジパッド**３**：[**6.2.19**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=62019)
 
 **※ Next の場合は Playストア を利用できます**  
-以下のファイルもダウンロードしてください。  
-- [**GoogleServicesFramework**.apk](https://subcontent.s1204.me/android/GMS-Pie/GoogleServicesFramework.apk)
-- [**PrebuiltGmsCorePi**.apk](https://subcontent.s1204.me/android/GMS-Pie/PrebuiltGmsCorePi.apk)
-- [**Phonesky**.apk](https://subcontent.s1204.me/android/GMS-Pie/Phonesky.apk)
-- [**GoogleCalendarSyncAdapter**.apk](https://subcontent.s1204.me/android/GMS-Pie/GoogleCalendarSyncAdapter.apk)
-- [**GoogleContactsSyncAdapter**.apk](https://subcontent.s1204.me/android/GMS-Pie/GoogleContactsSyncAdapter.apk)
-- [**GooglePartnerSetup**.apk](https://subcontent.s1204.me/android/GMS-Pie/GooglePartnerSetup.apk)
+以下のZIPファイルをダウンロードし、５つのAPKを抽出してください。  
+- [**CTZ-GApps**.zip](//subcontent.s1204.me/android/CTZ-GApps.zip)
 
 ⒉ 次のリンクを開き､ ファイルとして保存します｡  
 [**test_environment_info.xml**](https://smiletablabo.github.io/NovaDirectInstaller/test_environment_info.xml)

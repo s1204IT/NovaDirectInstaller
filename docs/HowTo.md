@@ -19,11 +19,15 @@
 チャレンジパッド**Neo** / **Next** ：[**7.0.57**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70057)  
 チャレンジパッド**３**：[**6.2.19**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=62019)
 
+**※ Next の場合は Playストア を利用できます**  
+以下のZIPファイルをダウンロードし、５つのAPKを抽出してください。  
+- [**CTZ-GApps**.zip](//subcontent.s1204.me/android/CTZ-GApps.zip)
+
 ⒉ 次のリンクを開き､ ファイルとして保存します｡  
 [**test_environment_info.xml**](https://smiletablabo.github.io/NovaDirectInstaller/test_environment_info.xml)
 
-⒊ SDカードの最上層に､ `test_environment_info.xml` と `NovaLauncher_x.x.xx.apk` をコピーします｡  
-※ **Nova Launcher** のAPKのファイル名は変えずにコピーしてください｡
+⒊ SDカードの最上層に､ `test_environment_info.xml` と ダウンロードした APK をコピーします｡  
+※ APKのファイル名は変えずにコピーしてください｡  
 
 ⒋ チャレンジパッドにmicroSDカードを挿入します｡
 
@@ -45,8 +49,8 @@ USB または ACアダプターが接続されていないと続行できませ�
 
 ⒏ 正常に続行すると以下のような画面が出ます｡  
 
-![](https://github.com/SmileTabLabo/NovaDirectInstaller/assets/52069677/1f06766d-5227-477b-b3ff-fe23d3d07c2c)
-指示通り､ そのままお待ちください｡  
+![](https://github.com/SmileTabLabo/NovaDirectInstaller/assets/52069677/daf59624-5e31-47f8-abe5-5990e8599e16)
+**画面には触れずに** そのままお待ちください｡  
 内部処理が終了後､ 自動的に再起動されます｡
 
 ⒐ 再起動後､ Nova Launcher の初期設定を行います｡  
@@ -61,3 +65,13 @@ ADB が使用可能な場合は､ 以下のコマンドを必ず実行して下
 adb shell pm uninstall --user 0 jp.co.benesse.dcha.dchaservice
 ```
 このコマンドを実行しないと､ 予期せぬタイミングでアプリやデータが全て削除される可能性が有ります｡
+
+## チャレンジパッドNext の例外について
+
+チャレンジパッドNext では **Google Playストア** が使用できます。  
+但し､ **DchaState** を `3` 以外にすると突然動作しなくなります。  
+絶対に値を変更しないでください。
+
+また､ `count_dcha_completed` が存在しない場合でも無視して **DchaState** を `3` にするので､  
+**QSB** や AOSPの**ブラウザ**､ **パッケージインストーラー** を使用したい場合は､  
+オリジナルの [**DchaState Changer**](//github.com/SmileTabLabo/DchaStateChanger) を使用してください｡

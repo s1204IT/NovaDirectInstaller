@@ -1,5 +1,7 @@
 package jp.co.benesse.touch.setuplogin;
 
+import static android.content.pm.PackageManager.*;
+
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -59,7 +61,8 @@ public class DchaCopyFile extends Activity {
                 }
             });
         } else {
-            Toast.makeText(this, "DchaService をバインド出来ませんでした", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "DchaService をバインド出来ませんでした\nアクティビティを無効化します", Toast.LENGTH_LONG).show();
+            getPackageManager().setComponentEnabledSetting(new ComponentName(this, DchaCopyFile.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
             finishAndRemoveTask();
         }
     }

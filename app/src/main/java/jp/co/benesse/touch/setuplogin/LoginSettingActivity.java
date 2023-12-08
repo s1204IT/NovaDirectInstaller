@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 
-import static android.app.admin.DevicePolicyManager.*;
+import static android.content.pm.PackageManager.*;
 import static android.os.Build.MODEL;
+
+import java.io.File;
 
 import jp.co.benesse.dcha.dchaservice.IDchaService;
 
@@ -26,15 +28,35 @@ public class LoginSettingActivity extends Activity {
 
         final String DCHA_PACKAGE = "jp.co.benesse.dcha.dchaservice";
         final String DCHA_SERVICE = DCHA_PACKAGE + ".DchaService";
+        final int UNDIGICHALIZE = 0;
+        final int DIGICHARIZING_DL_COMPLETE = 2;
+        final int DIGICHALIZED = 3;
+        final int INSTALL_FLAG = 2;
+        final int REBOOT_DEVICE = 0;
+        final String DSS_PACKAGE = "jp.co.benesse.dcha.systemsettings";
+        final String DSS_ACTIVITY = DSS_PACKAGE + ".TabletInfoSettingActivity";
         final String LAUNCHER3 = "com.android.launcher3";
         final String NOVA_PACKAGE = "com.teslacoilsw.launcher";
+        final String LOCAL_PATH = "/storage/emulated/0/Download/";
+        final String SD_PATH = "/storage/sdcard1/";
+        final String CT3 = "TAB-A03-BR3";
+        final String CTZ = "TAB-A05-BA1";
         // SDカードのルートに NovaLauncher のAPKを置く(CT3とCTX/Zで分ける)
-        final String NOVA6_SD_PATH = System.getenv("SECONDARY_STORAGE") + "/NovaLauncher_6.2.19.apk";
-        final String NOVA7_SD_PATH = System.getenv("SECONDARY_STORAGE") + "/NovaLauncher_7.0.57.apk";
-        final String NOVA_LOCAL_PATH = "/storage/emulated/0/Download/NovaLauncher.apk";
+        final String NOVA6_SD_PATH = SD_PATH + "NovaLauncher_6.2.19.apk";
+        final String NOVA7_SD_PATH = SD_PATH + "NovaLauncher_7.0.57.apk";
+        final String NOVA_LOCAL_PATH = LOCAL_PATH + "NovaLauncher.apk";
+        // Googleサービス
+        final String[] GApps = {
+            "GoogleServicesFramework",
+            "GmsCore",
+            "Phonesky",
+            "GoogleCalendarSyncAdapter",
+            "GoogleContactsSyncAdapter"
+        };
+        final String APK_EXT = ".apk";
 
-        // 端末管理者を要求(任意)
-        startActivity(new Intent(ACTION_ADD_DEVICE_ADMIN).putExtra(EXTRA_DEVICE_ADMIN, new ComponentName(this, DeviceAdminReceiver.class)).putExtra(EXTRA_ADD_EXPLANATION, "処理中です｡\nこのままお待ちください..."));
+        // DchaSystemSettings を呼び出し (外部なら何でも良い)
+        startActivity(new Intent().setClassName(DSS_PACKAGE, DSS_ACTIVITY));
 
         // DchaService をバインド
         bindService(new Intent(DCHA_SERVICE).setPackage(DCHA_PACKAGE), new ServiceConnection() {
@@ -43,30 +65,61 @@ public class LoginSettingActivity extends Activity {
                 mDchaService = IDchaService.Stub.asInterface(iBinder);
                 try {
                     // DchaState を変更
-                    mDchaService.setSetupStatus(0);
+                    mDchaService.setSetupStatus(DIGICHARIZING_DL_COMPLETE);
                     // ナビゲーションバーを表示
                     mDchaService.hideNavigationBar(false);
+
+                    // CT3 のみ直接インストール
+                    if (MODEL.equals(CT3)) {
+                        // アクティビティを無効化
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaStateChanger.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DevelopmentOptions.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DeviceAdminReceiver.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                        // 有効化
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaStateChanger3.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DevelopmentOptions3.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                        // APKをインストール
+                        mDchaService.installApp(NOVA6_SD_PATH, INSTALL_FLAG);
+
                     // CTX/Z は内部にコピーしてからインストール
-                    if (!MODEL.equals("TAB-A03-BR3")) {
+                    } else {
                         // SDカードからローカルにAPKをコピー
                         mDchaService.copyFile(NOVA7_SD_PATH, NOVA_LOCAL_PATH);
                         // APKをインストール
-                        mDchaService.installApp(NOVA_LOCAL_PATH, 2);
-                        // コピーしたAPKを削除 : 機能していない
-                        mDchaService.deleteFile(NOVA_LOCAL_PATH);
-                    // CT3 のみ直接インストール
-                    } else {
-                        // APKをインストール
-                        mDchaService.installApp(NOVA6_SD_PATH, 2);
+                        mDchaService.installApp(NOVA_LOCAL_PATH, INSTALL_FLAG);
+                        // コピーしたAPKを削除
+                        new File(NOVA_LOCAL_PATH).delete();
+
+                        // CTZ は GMS もインストール
+                        if (MODEL.equals(CTZ)) {
+                            // アクティビティを無効化
+                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaCopyFile.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaInstallApp.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DevelopmentOptions.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                            // 有効化
+                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaStateReceiver.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                            // DchaState を 3 にする
+                            mDchaService.setSetupStatus(DIGICHALIZED);
+                            // Googleサービス
+                            for (String pkg : GApps) {
+                                mDchaService.copyFile(SD_PATH + pkg + APK_EXT, LOCAL_PATH + pkg + APK_EXT);
+                                mDchaService.installApp(LOCAL_PATH + pkg + APK_EXT, INSTALL_FLAG);
+                                new File(LOCAL_PATH + pkg + APK_EXT).delete();
+                            }
+                        }
                     }
                     // Launcher3 の関連付けを解除
                     mDchaService.clearDefaultPreferredApp(LAUNCHER3);
                     // 既定のランチャーを変更 (CTX/Z のみ機能)
                     mDchaService.setDefaultPreferredHomeApp(NOVA_PACKAGE);
-                    // Launcher3 を停止
-                    mDchaService.removeTask(LAUNCHER3);
+                    // DchaState を 0 にする
+                    if (!MODEL.equals(CTZ)) {
+                        mDchaService.setSetupStatus(UNDIGICHALIZE);
+                    }
+                    // このアクティビティを無効化
+                    getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), LoginSettingActivity.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
                     // 再起動
-                    mDchaService.rebootPad(0, null);
+                    mDchaService.rebootPad(REBOOT_DEVICE, null);
                 } catch (RemoteException ignored) {
                 }
                 unbindService(this);

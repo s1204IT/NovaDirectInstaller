@@ -4,9 +4,11 @@
     package="jp.co.benesse.touch.setuplogin">
 
     <uses-permission android:name="jp.co.benesse.dcha.permission.ACCESS_SYSTEM" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> 
 
     <application
         android:label="DchaState Changer"
@@ -38,7 +40,34 @@
         </activity>
 
         <activity
+            android:name=".DchaStateChanger3"
+            android:enabled="false"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".DevelopmentOptions"
+            android:clearTaskOnLaunch="true"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:icon="@drawable/ic_settings_development_alpha"
+            android:label="開発者向けオプション"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".DevelopmentOptions3"
+            android:enabled="false"
             android:clearTaskOnLaunch="true"
             android:excludeFromRecents="true"
             android:exported="true"
@@ -75,6 +104,16 @@
             </intent-filter>
         </activity>
 
+        <receiver
+            android:name=".DchaStateReceiver"
+            android:enabled="false"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        
         <receiver
             android:name=".DeviceAdminReceiver"
             android:exported="false"

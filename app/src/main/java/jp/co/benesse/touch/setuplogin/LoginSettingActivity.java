@@ -48,11 +48,10 @@ public class LoginSettingActivity extends Activity {
         // Googleサービス
         final String[] GApps = {
             "GoogleServicesFramework",
-            "PrebuiltGmsCorePi",
+            "GmsCore",
             "Phonesky",
             "GoogleCalendarSyncAdapter",
-            "GoogleContactsSyncAdapter",
-            "GooglePartnerSetup"
+            "GoogleContactsSyncAdapter"
         };
         final String APK_EXT = ".apk";
 

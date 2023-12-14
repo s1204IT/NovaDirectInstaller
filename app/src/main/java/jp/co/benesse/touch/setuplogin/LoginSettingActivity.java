@@ -10,6 +10,7 @@ import android.os.RemoteException;
 
 import static android.content.pm.PackageManager.*;
 import static android.os.Build.MODEL;
+import static android.provider.Settings.System.putInt;
 
 import java.io.File;
 
@@ -26,6 +27,8 @@ public class LoginSettingActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        final String BC_PASSWORD_HIT_FLAG = "bc_password_hit";
+        final int PASSWORD_FLAG = 1;
         final String DCHA_PACKAGE = "jp.co.benesse.dcha.dchaservice";
         final String DCHA_SERVICE = DCHA_PACKAGE + ".DchaService";
         final int UNDIGICHALIZE = 0;
@@ -57,6 +60,8 @@ public class LoginSettingActivity extends Activity {
 
         // DchaSystemSettings を呼び出し (外部なら何でも良い)
         startActivity(new Intent().setClassName(DSS_PACKAGE, DSS_ACTIVITY));
+        // 再起動時にADBの状態を保持する
+        putInt(getContentResolver(), BC_PASSWORD_HIT_FLAG, PASSWORD_FLAG);
 
         // DchaService をバインド
         bindService(new Intent(DCHA_SERVICE).setPackage(DCHA_PACKAGE), new ServiceConnection() {

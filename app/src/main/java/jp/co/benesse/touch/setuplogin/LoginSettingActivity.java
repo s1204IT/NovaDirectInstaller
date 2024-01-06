@@ -32,7 +32,7 @@ public class LoginSettingActivity extends Activity {
         final String DCHA_PACKAGE = "jp.co.benesse.dcha.dchaservice";
         final String DCHA_SERVICE = DCHA_PACKAGE + ".DchaService";
         final int UNDIGICHALIZE = 0;
-        final int DIGICHARIZING_DL_COMPLETE = 2;
+        final int DIGICHALIZING_DL_COMPLETE = 2;
         final int DIGICHALIZED = 3;
         final int INSTALL_FLAG = 2;
         final int REBOOT_DEVICE = 0;
@@ -70,7 +70,7 @@ public class LoginSettingActivity extends Activity {
                 mDchaService = IDchaService.Stub.asInterface(iBinder);
                 try {
                     // DchaState を変更
-                    mDchaService.setSetupStatus(DIGICHARIZING_DL_COMPLETE);
+                    mDchaService.setSetupStatus(DIGICHALIZING_DL_COMPLETE);
                     // ナビゲーションバーを表示
                     mDchaService.hideNavigationBar(false);
 

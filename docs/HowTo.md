@@ -2,7 +2,8 @@
 
 ## 警告
 
-このツールの使用に依って生じた損害については一切責任を負いません｡  
+> [!CAUTION]
+> このツールの使用に依って生じた損害については一切責任を負いません｡  
 また､ チャレンジパッド３の場合は､ 通常は､ [**MTKClientを使用した方法**](//zenn.dev/s1204it/articles/16fce85441821f) を利用し､ どうしてもPC環境が無い時のみ利用して下さい｡
 
 ## 必要なもの
@@ -19,15 +20,17 @@
 チャレンジパッド**Neo** / **Next** ：[**7.0.57**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70057)  
 チャレンジパッド**３**：[**6.2.19**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=62019)
 
-**※ Next の場合は Playストア を利用できます**  
+> [!IMPORTANT]
+> **※ Next の場合は Playストア を利用できます**  
 以下のZIPファイルをダウンロードし、５つのAPKを抽出してください。  
-- [**CTZ-GApps**.zip](//subcontent.s1204.me/android/CTZ-GApps.zip)
+> - [**CTZ-GApps**.zip](//subcontent.s1204.me/android/CTZ-GApps.zip)
 
 ⒉ 次のリンクを開き､ ファイルとして保存します｡  
 [**test_environment_info.xml**](https://smiletablabo.github.io/NovaDirectInstaller/test_environment_info.xml)
 
 ⒊ SDカードの最上層に､ `test_environment_info.xml` と ダウンロードした APK をコピーします｡  
-※ APKのファイル名は変えずにコピーしてください｡  
+> [!WARNING]
+> ※ APKのファイル名は変えずにコピーしてください｡  
 
 ⒋ チャレンジパッドにmicroSDカードを挿入します｡
 
@@ -37,7 +40,8 @@
 
 ⒍ ｢<kbd><b>わかった</b></kbd>｣ を押します｡
 
-USB または ACアダプターが接続されていないと続行できません｡  
+> [!NOTE]
+> USB または ACアダプターが接続されていないと続行できません｡  
 また､ バッテリー残量が50%未満だと続行できません｡  
 
 ⒎ 画面右下に黒文字で改造が有効になっている旨の文章が在る事を確認します｡  
@@ -69,7 +73,8 @@ adb shell pm uninstall --user 0 jp.co.benesse.dcha.dchaservice
 ## チャレンジパッドNext の例外について
 
 チャレンジパッドNext では **Google Playストア** が使用できます。  
-但し､ **DchaState** を `3` 以外にすると突然動作しなくなります。  
+> [!WARNING]
+> 但し､ **DchaState** を `3` 以外にすると突然動作しなくなります。  
 絶対に値を変更しないでください。
 
 また､ `count_dcha_completed` が存在しない場合でも無視して **DchaState** を `3` にするので､  

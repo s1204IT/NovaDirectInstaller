@@ -87,8 +87,7 @@
             android:label="ファイルコピー"
             android:launchMode="singleInstance">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
 
@@ -99,21 +98,51 @@
             android:label="APKインストーラー"
             android:launchMode="singleInstance">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".DchaStateReceiver"
+        <activity
+            android:name=".BypassActivity"
             android:enabled="false"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+
+        <service
+            android:name=".BypassService"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.saradabar.bypassrevokepermission.data.service.BypassService"/>
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".BootCompletedReceiver"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
         </receiver>
-        
+
+        <receiver
+            android:name=".PackageAddedReceiver"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PACKAGE_CHANGED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
         <receiver
             android:name=".DeviceAdminReceiver"
             android:exported="false"

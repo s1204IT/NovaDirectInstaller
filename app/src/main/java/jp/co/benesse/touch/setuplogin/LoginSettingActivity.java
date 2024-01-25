@@ -7,6 +7,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.widget.Toast;
 
 import static android.content.pm.PackageManager.*;
 import static android.os.Build.MODEL;
@@ -100,16 +101,17 @@ public class LoginSettingActivity extends Activity {
                             // アクティビティを無効化
                             getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaCopyFile.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
                             getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaInstallApp.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DevelopmentOptions.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-                            // 有効化
-                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaStateReceiver.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
                             // DchaState を 3 にする
                             mDchaService.setSetupStatus(DIGICHALIZED);
                             // Googleサービス
                             for (String pkg : GApps) {
-                                mDchaService.copyFile(SD_PATH + pkg + APK_EXT, LOCAL_PATH + pkg + APK_EXT);
-                                mDchaService.installApp(LOCAL_PATH + pkg + APK_EXT, INSTALL_FLAG);
-                                new File(LOCAL_PATH + pkg + APK_EXT).delete();
+                                if (mDchaService.copyFile(SD_PATH + pkg + APK_EXT, LOCAL_PATH + pkg + APK_EXT)) {
+                                    Toast.makeText(getApplicationContext(), pkg + " をインストールしています", Toast.LENGTH_SHORT).show();
+                                    mDchaService.installApp(LOCAL_PATH + pkg + APK_EXT, INSTALL_FLAG);
+                                    new File(LOCAL_PATH + pkg + APK_EXT).delete();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "ファイルが見つかりません：" + SD_PATH + pkg + APK_EXT, Toast.LENGTH_LONG).show();
+                                }
                             }
                         }
                     }
@@ -120,6 +122,12 @@ public class LoginSettingActivity extends Activity {
                     // DchaState を 0 にする
                     if (!MODEL.equals(CTZ)) {
                         mDchaService.setSetupStatus(UNDIGICHALIZE);
+                    } else {
+                        // CTZ専用のアクティビティ等を有効化
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), BypassService.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), BootCompletedReceiver.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), PackageAddedReceiver.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), BypassActivity.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
                     }
                     // このアクティビティを無効化
                     getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), LoginSettingActivity.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
@@ -131,7 +139,6 @@ public class LoginSettingActivity extends Activity {
             }
             @Override
             public void onServiceDisconnected(ComponentName componentName) {
-                unbindService(this);
             }
         }, BIND_ADJUST_WITH_ACTIVITY);
     }

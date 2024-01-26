@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="jp.co.benesse.touch.setuplogin">
+    package="jp.co.benesse.touch.setuplogin"
+    tools:ignore="ProtectedPermissions">
 
     <uses-permission android:name="jp.co.benesse.dcha.permission.ACCESS_SYSTEM" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission
-        android:name="android.permission.WRITE_SETTINGS"
-        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.REBOOT" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> 
 
     <application
         android:label="DchaState Changer"
-        android:theme="@android:style/Theme.DeviceDefault"
+        android:theme="@android:style/Theme.NoDisplay"
         tools:ignore="MissingApplicationIcon">
 
         <activity
@@ -102,6 +102,31 @@
             </intent-filter>
         </activity>
 
+        <receiver
+            android:name=".DchaStateReceiver"
+            android:enabled="false"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".PlayUpgradeActivity"
+            android:clearTaskOnLaunch="true"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@android:mipmap/sym_def_app_icon"
+            android:label="BRPの有効化"
+            android:launchMode="singleInstance"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".BypassActivity"
             android:enabled="false"
@@ -114,10 +139,11 @@
 
         <service
             android:name=".BypassService"
+            android:process=":protect"
             android:enabled="false"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.saradabar.bypassrevokepermission.data.service.BypassService"/>
+                <action android:name="jp.co.benesse.touch.setuplogin.BypassService" />
             </intent-filter>
         </service>
 
@@ -131,15 +157,24 @@
         </receiver>
 
         <receiver
-            android:name=".PackageAddedReceiver"
+            android:name=".PackageReceiver"
             android:enabled="false"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
-                <action android:name="android.intent.action.PACKAGE_CHANGED" />
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_FULLY_REMOVED" />
                 <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".DynamicReceiver"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+                <action android:name="android.intent.action.SCREEN_ON" />
             </intent-filter>
         </receiver>
 

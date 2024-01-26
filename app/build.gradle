@@ -12,7 +12,7 @@ android {
         //noinspection ExpiredTargetSdkVersion
         targetSdk 22
         versionCode 8
-        versionName "2.1.0"
+        versionName "3.0.0"
     }
 
     signingConfigs {
@@ -29,13 +29,13 @@ android {
             signingConfig signingConfigs.android
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles += 'proguard-rules.pro'
         }
         release {
             signingConfig signingConfigs.android
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles += 'proguard-rules.pro'
         }
     }
 }

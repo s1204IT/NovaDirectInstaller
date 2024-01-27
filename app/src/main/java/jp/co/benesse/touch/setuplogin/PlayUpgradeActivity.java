@@ -27,11 +27,10 @@ public class PlayUpgradeActivity extends Activity {
             if (GMS_VER > GMS_MIN_VER && FINSKY_VER > FINSKY_MIN_VER) {
                 // Enable BypassRevokePermission
                 getPackageManager().setComponentEnabledSetting(new ComponentName(this, BypassActivity.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
-                getPackageManager().setComponentEnabledSetting(new ComponentName(this, DynamicReceiver.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
                 getPackageManager().setComponentEnabledSetting(new ComponentName(this, BypassService.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                getPackageManager().setComponentEnabledSetting(new ComponentName(this, DynamicReceiver.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
                 getPackageManager().setComponentEnabledSetting(new ComponentName(this, BootCompletedReceiver.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
                 getPackageManager().setComponentEnabledSetting(new ComponentName(this, PackageReceiver.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
-                getPackageManager().setComponentEnabledSetting(new ComponentName(this, BypassActivity.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
                 // Disable this Activity
                 getPackageManager().setComponentEnabledSetting(new ComponentName(this, getClass()), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
                 // Disable DchaStateReceiver

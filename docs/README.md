@@ -1,5 +1,5 @@
 # Nova Direct Installer
-[**DchaState Changer**](//github.com/SmileTabLabo/DchaStateChanger)を使ってSDカードから[**Nova Launcher**](//novalauncher.com)をインストールするためのアプリです｡
+[**DchaState Changer**](https://github.com/SmileTabLabo/DchaStateChanger)を使ってSDカードから[**Nova Launcher**](https://novalauncher.com)をインストールするためのアプリです｡
 
 [![Build](https://github.com/SmileTabLabo/DchaStateChanger/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/SmileTabLabo/NovaDirectInstaller/actions/workflows/build.yml)
 

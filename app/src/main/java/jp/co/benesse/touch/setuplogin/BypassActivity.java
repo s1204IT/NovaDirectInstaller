@@ -14,7 +14,6 @@ import android.os.BenesseExtension;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,7 +28,6 @@ public class BypassActivity extends Activity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         run(this);
-        Toast.makeText(this, "実行しました", Toast.LENGTH_SHORT).show();
         finishAndRemoveTask();
     }
 

@@ -120,7 +120,8 @@
             android:icon="@android:mipmap/sym_def_app_icon"
             android:label="BRPの有効化"
             android:launchMode="singleInstance"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:theme="@android:style/ThemeOverlay.Material.Dialog.Alert">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

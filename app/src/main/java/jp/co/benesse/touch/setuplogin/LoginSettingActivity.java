@@ -20,8 +20,11 @@ public class LoginSettingActivity extends Activity {
 
     IDchaService mDchaService;
 
-    public void onBackPressed() {
-        // バックキーを無効化
+    public void ofDisable(Class<?> cls) {
+        getPackageManager().setComponentEnabledSetting(new ComponentName(this, cls), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+    }
+    public void ofEnable(Class<?> cls) {
+        getPackageManager().setComponentEnabledSetting(new ComponentName(this, cls), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -41,12 +44,12 @@ public class LoginSettingActivity extends Activity {
         final String LAUNCHER3 = "com.android.launcher3";
         final String NOVA_PACKAGE = "com.teslacoilsw.launcher";
         final String LOCAL_PATH = "/storage/emulated/0/Download/";
-        final String SD_PATH = "/storage/sdcard1/";
+        final String SD_PATH = "/storage/sdcard1/APK/";
         final String CT3 = "TAB-A03-BR3";
         final String CTZ = "TAB-A05-BA1";
         // SDカードのルートに NovaLauncher のAPKを置く(CT3とCTX/Zで分ける)
         final String NOVA6_SD_PATH = SD_PATH + "NovaLauncher_6.2.19.apk";
-        final String NOVA7_SD_PATH = SD_PATH + "NovaLauncher_7.0.57.apk";
+        final String NOVA7_SD_PATH = SD_PATH + "NovaLauncher_7.0.58.apk";
         final String NOVA_LOCAL_PATH = LOCAL_PATH + "NovaLauncher.apk";
         // Googleサービス
         final String[] GApps = {
@@ -77,12 +80,12 @@ public class LoginSettingActivity extends Activity {
                     // CT3 のみ直接インストール
                     if (MODEL.equals(CT3)) {
                         // アクティビティを無効化
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaStateChanger.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DevelopmentOptions.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DeviceAdminReceiver.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                        ofDisable(DchaStateChanger.class);
+                        ofDisable(DevelopmentOptions.class);
+                        ofDisable(DeviceAdminReceiver.class);
                         // 有効化
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaStateChanger3.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DevelopmentOptions3.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
+                        ofEnable(DchaStateChanger3.class);
+                        ofEnable(DevelopmentOptions3.class);
                         // APKをインストール
                         mDchaService.installApp(NOVA6_SD_PATH, INSTALL_FLAG);
 
@@ -98,8 +101,12 @@ public class LoginSettingActivity extends Activity {
                         // CTZ は GMS もインストール
                         if (MODEL.equals(CTZ)) {
                             // アクティビティを無効化
-                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaCopyFile.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
-                            getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaInstallApp.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                            ofDisable(DchaCopyFile.class);
+                            ofDisable(DchaInstallApp.class);
+                            ofDisable(DevelopmentOptions.class);
+                            // 有効化
+                            ofEnable(PlayUpgradeActivity.class);
+                            ofEnable(DchaStateReceiver.class);
                             // DchaState を 3 にする
                             mDchaService.setSetupStatus(DIGICHALIZED);
                             // Googleサービス
@@ -117,13 +124,9 @@ public class LoginSettingActivity extends Activity {
                     // DchaState を 0 にする
                     if (!MODEL.equals(CTZ)) {
                         mDchaService.setSetupStatus(UNDIGICHALIZE);
-                    } else {
-                        // BRP enabler
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), PlayUpgradeActivity.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
-                        getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), DchaStateReceiver.class), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
                     }
                     // このアクティビティを無効化
-                    getPackageManager().setComponentEnabledSetting(new ComponentName(getApplicationContext(), LoginSettingActivity.class), COMPONENT_ENABLED_STATE_DISABLED, DONT_KILL_APP);
+                    ofDisable(LoginSettingActivity.class);
                     // 再起動
                     mDchaService.rebootPad(REBOOT_DEVICE, null);
                 } catch (RemoteException ignored) {

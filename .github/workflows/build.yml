@@ -19,6 +19,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
 
       - name: Checkout
@@ -31,7 +33,7 @@ jobs:
           java-version: '8'
 
       - name: Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches/
@@ -42,28 +44,44 @@ jobs:
         run: |
           ./gradlew aR --no-daemon
           cp -f app/build/outputs/apk/release/app-release.apk docs/open/TouchSetupLogin.apk
-          echo "version=$(grep versionName app/build.gradle | awk '{print $2}' | tr -d \")" >> $GITHUB_ENV
-          echo "commit=$(echo ${{ github.sha }} | cut -c-7)" >> $GITHUB_ENV
+          {
+              echo "version=v$(grep versionName app/build.gradle | awk '{print $2}' | tr -d \")"
+              echo "commit=$(echo ${{ github.sha }} | cut -c-7)"
+          } >> $GITHUB_ENV
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: NovaDirectInstaller(v${{ env.version }}@${{ env.commit }})
+          name: NovaDirectInstaller(${{ env.version }}@${{ env.commit }})
           path: app/build/outputs/apk/release/app-release.apk
 
-      - name: Push APK
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v6
         if: github.event.inputs.release == 'true'
-        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: v${{ env.version }}
+          gpg_private_key: ${{ secrets.GPG_KEY }}
+          passphrase: ${{ secrets.GPG_PASS }}
+          fingerprint: ${{ vars.GPG_FINGERPRINT }}
+          trust_level: 5
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Push APK
+        uses: stefanzweifel/git-auto-commit-action@v5
+        if: github.event.inputs.release == 'true'
+        with:
+          commit_message: ${{ env.version }}
+          commit_user_name: ${{ vars.COMMITTER_NAME }}
+          commit_user_email: ${{ vars.COMMITTER_EMAIL }}
+          #commit_options: '-S'
           file_pattern: docs/open/TouchSetupLogin.apk
-          tagging_message: v${{ env.version }}
+          tagging_message: ${{ env.version }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if: github.event.inputs.release == 'true'
         with:
-          tag_name: v${{ env.version }}
+          tag_name: ${{ env.version }}
           draft: true
           prerelease: false
           files: app/build/outputs/apk/release/app-release.apk

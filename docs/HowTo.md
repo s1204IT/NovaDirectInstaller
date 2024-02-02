@@ -4,7 +4,7 @@
 
 > [!CAUTION]
 > このツールの使用に依って生じた損害については一切責任を負いません｡  
-また､ チャレンジパッド３の場合は､ 通常は､ [**MTKClientを使用した方法**](//zenn.dev/s1204it/articles/16fce85441821f) を利用し､ どうしてもPC環境が無い時のみ利用して下さい｡
+また､ チャレンジパッド３の場合は､ 通常は [**MTKClientを使用した方法**](https://zenn.dev/s1204it/articles/16fce85441821f) を利用し､ どうしてもPC環境が無い時のみ利用して下さい｡
 
 ## 必要なもの
 
@@ -17,18 +17,30 @@
 
 ⒈ Nova Launcher のAPKをダウンロードします｡
 
-チャレンジパッド**Neo** / **Next** ：[**7.0.57**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70057)  
+チャレンジパッド**Neo** / **Next** ：[**7.0.58**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=70058)  
 チャレンジパッド**３**：[**6.2.19**](https://teslacoilapps.com/tesladirect/download.pl?packageName=com.teslacoilsw.launcher&versionCode=62019)
 
 > [!IMPORTANT]
 > **※ Next の場合は Playストア を利用できます**  
 以下のZIPファイルをダウンロードし、５つのAPKを抽出してください。  
-> - [**CTZ-GApps**.zip](//subcontent.s1204.me/android/CTZ-GApps.zip)
+> - [**CTZ-GApps**.zip](https://subcontent.s1204.me/android/CTZ-GApps.zip)
 
 ⒉ 次のリンクを開き､ ファイルとして保存します｡  
 [**test_environment_info.xml**](https://smiletablabo.github.io/NovaDirectInstaller/test_environment_info.xml)
 
-⒊ SDカードの最上層に､ `test_environment_info.xml` と ダウンロードした APK をコピーします｡  
+⒊ SDカードの最上層に､ `test_environment_info.xml` をコピーし､ **APK** と言う名前のフォルダを作りダウンロードした APK をコピーします｡  
+```
+SDカードの最上層/
+├── APK
+│   ├── GmsCore.apk
+│   ├── GoogleCalendarSyncAdapter.apk
+│   ├── GoogleContsctsSyncAdapter.apk
+│   ├── GoogleServicesFramework.apk
+│   ├── NovaLauncher_6.2.19.apk
+│   ├── NovaLauncher_7.0.58.apk
+│   └── Phonesky.apk
+└── test_environment_info.xml
+```
 > [!WARNING]
 > ※ APKのファイル名は変えずにコピーしてください｡  
 
@@ -36,7 +48,7 @@
 
 ⒌ ホーム画面の､ スタートボタンを押します｡
 
-![](https://user-images.githubusercontent.com/52069677/164911100-959604e3-d1c9-4250-9b95-94fbb2b0de62.png)
+[![](https://user-images.githubusercontent.com/52069677/164911100-959604e3-d1c9-4250-9b95-94fbb2b0de62.png)](#)
 
 ⒍ ｢<kbd><b>わかった</b></kbd>｣ を押します｡
 
@@ -53,7 +65,7 @@
 
 ⒏ 正常に続行すると以下のような画面が出ます｡  
 
-![](https://github.com/SmileTabLabo/NovaDirectInstaller/assets/52069677/daf59624-5e31-47f8-abe5-5990e8599e16)
+[![](https://github.com/SmileTabLabo/NovaDirectInstaller/assets/52069677/daf59624-5e31-47f8-abe5-5990e8599e16)](#)
 **画面には触れずに** そのままお待ちください｡  
 内部処理が終了後､ 自動的に再起動されます｡
 
@@ -63,12 +75,6 @@
 ---
 
 これで簡易的な改造は完了です｡
-
-ADB が使用可能な場合は､ 以下のコマンドを必ず実行して下さい｡
-```
-adb shell pm uninstall --user 0 jp.co.benesse.dcha.dchaservice
-```
-このコマンドを実行しないと､ 予期せぬタイミングでアプリやデータが全て削除される可能性が有ります｡
 
 ## チャレンジパッドNext の例外について
 

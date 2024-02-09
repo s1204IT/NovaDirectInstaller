@@ -80,8 +80,9 @@ SDカードの最上層/
 
 チャレンジパッドNext では **Google Playストア** が使用できます。  
 > [!WARNING]
-> 但し､ **DchaState** を `3` 以外にすると突然動作しなくなります。  
-絶対に値を変更しないでください。
+> 但し､ **DchaState** を `3` 以外にすると突然動作しなくなります。
+> これの回避策として､ [**BypassRevokePermission**](https://github.com/Kobold831/BypassRevokePermission) と言うアプリを統合しています。
+> このアプリの機能を使用するには、**Play ストア** と **Google Play開発者サービス** を更新し、アプリ一覧にある「**BRPの有効化**」と言うアプリ(アクティビティ)を起動してください。
 
 また､ `count_dcha_completed` が存在しない場合でも無視して **DchaState** を `3` にするので､  
 **QSB** や AOSPの**ブラウザ**､ **パッケージインストーラー** を使用したい場合は､  

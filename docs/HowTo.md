@@ -30,11 +30,9 @@
 
 ⒊ SDカードの最上層に､ `test_environment_info.xml` をコピーし､ **APK** と言う名前のフォルダを作りダウンロードした APK をコピーします｡  
 ```
-SDカードの最上層/
+SDカードの最上層
 ├── APK
 │   ├── GmsCore.apk
-│   ├── GoogleCalendarSyncAdapter.apk
-│   ├── GoogleContsctsSyncAdapter.apk
 │   ├── GoogleServicesFramework.apk
 │   ├── NovaLauncher_6.2.19.apk
 │   ├── NovaLauncher_7.0.58.apk

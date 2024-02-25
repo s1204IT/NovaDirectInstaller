@@ -56,8 +56,8 @@ public class LoginSettingActivity extends Activity {
                 "GoogleServicesFramework",
                 "GmsCore",
                 "Phonesky",
-                "GoogleCalendarSyncAdapter",
-                "GoogleContactsSyncAdapter"
+                //"GoogleCalendarSyncAdapter",
+                //"GoogleContactsSyncAdapter"
         };
         final String APK_EXT = ".apk";
 

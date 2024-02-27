@@ -26,7 +26,7 @@
 > - [**CTZ-GApps**.zip](https://subcontent.s1204.me/android/CTZ-GApps.zip)
 
 ⒉ 次のリンクを開き､ ファイルとして保存します｡  
-[**test_environment_info.xml**](https://smiletablabo.github.io/NovaDirectInstaller/test_environment_info.xml)
+[**test_environment_info.xml**](https://gh.s1204.me/NovaDirectInstaller/test_environment_info.xml)
 
 ⒊ SDカードの最上層に､ `test_environment_info.xml` をコピーし､ **APK** と言う名前のフォルダを作りダウンロードした APK をコピーします｡  
 ```
@@ -46,7 +46,7 @@ SDカードの最上層
 
 ⒌ ホーム画面の､ スタートボタンを押します｡
 
-[![](https://user-images.githubusercontent.com/52069677/164911100-959604e3-d1c9-4250-9b95-94fbb2b0de62.png)](#)
+[![](https://github.com/s1204IT/NovaDirectInstaller/assets/52069677/7b570b1d-60b5-4186-8080-4fbdde7e6e9c)](#)
 
 ⒍ ｢<kbd><b>わかった</b></kbd>｣ を押します｡
 
@@ -61,9 +61,9 @@ SDカードの最上層
 確認出来たら､ ｢<kbd><b>設定を始める</b></kbd>｣→｢<kbd><b>近くのネットワークから接続する</b></kbd>｣ からWi-Fiに接続します｡  
 接続後､ ｢<kbd><b>←もどる</b></kbd>｣→｢<kbd><b>次へ</b></kbd>｣→｢<kbd><b>次へ</b></kbd>｣と進みます｡
 
-⒏ 正常に続行すると以下のような画面が出ます｡  
+⒏ 正常に続行すると以下のような画面が出ます｡
 
-[![](https://github.com/SmileTabLabo/NovaDirectInstaller/assets/52069677/daf59624-5e31-47f8-abe5-5990e8599e16)](#)
+[![](https://github.com/s1204IT/NovaDirectInstaller/assets/52069677/8b883890-c60a-4043-9636-ea90e6730516)](#)
 **画面には触れずに** そのままお待ちください｡  
 内部処理が終了後､ 自動的に再起動されます｡
 
@@ -79,9 +79,9 @@ SDカードの最上層
 チャレンジパッドNext では **Google Playストア** が使用できます。  
 > [!WARNING]
 > 但し､ **DchaState** を `3` 以外にすると突然動作しなくなります。
-> これの回避策として､ [**BypassRevokePermission**](https://github.com/Kobold831/BypassRevokePermission) と言うアプリを統合しています。
+> これの回避策として､ [**BypassRevokePermission**](https://github.com/Kobold831/BypassRevokePermission) と言うアプリを統合しています。  
 > このアプリの機能を使用するには、**Play ストア** と **Google Play開発者サービス** を更新し、アプリ一覧にある「**BRPの有効化**」と言うアプリ(アクティビティ)を起動してください。
 
 また､ `count_dcha_completed` が存在しない場合でも無視して **DchaState** を `3` にするので､  
 **QSB** や AOSPの**ブラウザ**､ **パッケージインストーラー** を使用したい場合は､  
-オリジナルの [**DchaState Changer**](//github.com/SmileTabLabo/DchaStateChanger) を使用してください｡
+オリジナルの [**DchaState Changer**](https://github.com/SmileTabLabo/DchaStateChanger) を使用してください｡

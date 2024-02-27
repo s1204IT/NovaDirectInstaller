@@ -1,5 +1,12 @@
 # Nova Direct Installer の使い方
 
+---
+
+> [!NOTE]
+> 現在、移行作業中！
+
+---
+
 ## 警告
 
 > [!CAUTION]

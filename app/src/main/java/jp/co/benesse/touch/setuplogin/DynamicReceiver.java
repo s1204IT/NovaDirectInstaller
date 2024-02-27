@@ -10,7 +10,7 @@ import android.os.BenesseExtension;
 import java.util.Objects;
 
 public class DynamicReceiver extends BroadcastReceiver {
-
+    @Deprecated
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Objects.requireNonNull(intent.getAction()).equals(Intent.ACTION_SHUTDOWN)) {

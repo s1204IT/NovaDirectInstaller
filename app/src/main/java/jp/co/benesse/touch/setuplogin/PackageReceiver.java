@@ -31,6 +31,7 @@ public class PackageReceiver extends BroadcastReceiver {
         }
     }
 
+    @Deprecated
     private void _run(Context context, Intent intent) {
         if (!Objects.requireNonNull(intent.getData()).toString().replace("package:", "").equals("a.a")) {
             context.startActivity(new Intent(context, BypassActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));

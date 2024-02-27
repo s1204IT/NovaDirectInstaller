@@ -30,6 +30,7 @@ public class PlayUpgradeActivity extends Activity {
         getPackageManager().setComponentEnabledSetting(new ComponentName(this, cls), COMPONENT_ENABLED_STATE_ENABLED, DONT_KILL_APP);
     }
 
+    @Deprecated
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);

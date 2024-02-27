@@ -67,6 +67,7 @@ public class DchaCopyFile extends Activity {
         }
     }
 
+    @Deprecated
     @Override
     public void onBackPressed() {
         finish();

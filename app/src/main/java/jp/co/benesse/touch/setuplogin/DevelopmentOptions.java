@@ -10,6 +10,7 @@ import static android.provider.Settings.*;
 import static android.provider.Settings.Global.*;
 
 public class DevelopmentOptions extends Activity {
+    @Deprecated
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setDchaState(3);
@@ -17,12 +18,7 @@ public class DevelopmentOptions extends Activity {
         startActivity(new Intent(ACTION_APPLICATION_DEVELOPMENT_SETTINGS));
         try {
             if ((getInt(getContentResolver(), ADB_ENABLED) == 1) && (getInt(getContentResolver(), DEVELOPMENT_SETTINGS_ENABLED) == 1)) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        setDchaState(0);
-                    }
-                }, 1000);
+                new Handler().postDelayed(() -> setDchaState(0), 1000);
             }
         } catch (SettingNotFoundException ignored) {
         }

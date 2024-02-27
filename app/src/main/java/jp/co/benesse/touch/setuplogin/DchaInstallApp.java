@@ -70,6 +70,7 @@ public class DchaInstallApp extends Activity {
         }
     }
 
+    @Deprecated
     @Override
     public void onBackPressed() {
         finish();

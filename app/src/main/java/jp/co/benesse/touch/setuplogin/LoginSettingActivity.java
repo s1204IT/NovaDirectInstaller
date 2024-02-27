@@ -13,10 +13,14 @@ import static android.os.Build.MODEL;
 import static android.provider.Settings.System.putInt;
 
 import java.io.File;
+import java.util.Arrays;
 
 import jp.co.benesse.dcha.dchaservice.IDchaService;
 
 public class LoginSettingActivity extends Activity {
+
+    public static final String DCHA_PACKAGE = "jp.co.benesse.dcha.dchaservice";
+    public static final String DCHA_SERVICE = DCHA_PACKAGE + ".DchaService";
 
     IDchaService mDchaService;
 
@@ -32,8 +36,6 @@ public class LoginSettingActivity extends Activity {
 
         final String BC_PASSWORD_HIT_FLAG = "bc_password_hit";
         final int PASSWORD_FLAG = 1;
-        final String DCHA_PACKAGE = "jp.co.benesse.dcha.dchaservice";
-        final String DCHA_SERVICE = DCHA_PACKAGE + ".DchaService";
         final int UNDIGICHALIZE = 0;
         final int DIGICHALIZING_DL_COMPLETE = 2;
         final int DIGICHALIZED = 3;
@@ -45,19 +47,28 @@ public class LoginSettingActivity extends Activity {
         final String NOVA_PACKAGE = "com.teslacoilsw.launcher";
         final String LOCAL_PATH = "/storage/emulated/0/Download/";
         final String SD_PATH = "/storage/sdcard1/APK/";
+        final String SD_PATH_GAPPS = SD_PATH + "GApps";
+        final String SD_PATH_GAPPS2 = SD_PATH + "GApps2";
+        final String CT2S = "TAB-A03-BS";
+        final String CT2K = "TAB-A03-BR";
+        final String CT2L = "TAB-A03-BR2";
         final String CT3 = "TAB-A03-BR3";
+        final String CTX = "TAB-A05-BD";
         final String CTZ = "TAB-A05-BA1";
-        // SDカードのルートに NovaLauncher のAPKを置く(CT3とCTX/Zで分ける)
+        // SDカードのルートに NovaLauncher のAPKを置く(CT2/3とCTX/Zで分ける)
         final String NOVA6_SD_PATH = SD_PATH + "NovaLauncher_6.2.19.apk";
         final String NOVA7_SD_PATH = SD_PATH + "NovaLauncher_7.0.58.apk";
         final String NOVA_LOCAL_PATH = LOCAL_PATH + "NovaLauncher.apk";
         // Googleサービス
+        // CTZ
         final String[] GApps = {
                 "GoogleServicesFramework",
                 "GmsCore",
-                "Phonesky",
-                //"GoogleCalendarSyncAdapter",
-                //"GoogleContactsSyncAdapter"
+                "Phonesky"
+        };
+        // CT2
+        final String[] GApps2 = {
+                "GoogleLoginService" + Arrays.toString(GApps)
         };
         final String APK_EXT = ".apk";
 
@@ -111,7 +122,7 @@ public class LoginSettingActivity extends Activity {
                             mDchaService.setSetupStatus(DIGICHALIZED);
                             // Googleサービス
                             for (String pkg : GApps) {
-                                mDchaService.copyFile(SD_PATH + pkg + APK_EXT, LOCAL_PATH + pkg + APK_EXT);
+                                mDchaService.copyFile(SD_PATH_GAPPS + pkg + APK_EXT, LOCAL_PATH + pkg + APK_EXT);
                                 mDchaService.installApp(LOCAL_PATH + pkg + APK_EXT, INSTALL_FLAG);
                                 new File(LOCAL_PATH + pkg + APK_EXT).delete();
                             }

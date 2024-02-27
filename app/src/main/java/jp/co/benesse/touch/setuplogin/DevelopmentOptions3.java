@@ -1,7 +1,9 @@
 package jp.co.benesse.touch.setuplogin;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -11,11 +13,14 @@ import static android.provider.Settings.Global.*;
 
 public class DevelopmentOptions3 extends Activity {
 
+    @Deprecated
     @Override
     public void onBackPressed() {
         finish();
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
+    @Deprecated
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +32,7 @@ public class DevelopmentOptions3 extends Activity {
             intent = new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);
             try {
                 if ((getInt(getContentResolver(), ADB_ENABLED) == 1) && (getInt(getContentResolver(), DEVELOPMENT_SETTINGS_ENABLED) == 1)) {
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            System.putInt(getContentResolver(), DCHA_STATE, 0);
-                        }
-                    }, 1000);
+                    new Handler().postDelayed(() -> System.putInt(getContentResolver(), DCHA_STATE, 0), 1000);
                 }
             } catch (Settings.SettingNotFoundException ignored) {
             }

@@ -24,6 +24,8 @@ import jp.co.benesse.dcha.dchaservice.IDchaService;
 
 public class BypassActivity extends Activity {
 
+    private static final String BASE_APK = "base.apk";
+
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -31,16 +33,17 @@ public class BypassActivity extends Activity {
         finishAndRemoveTask();
     }
 
+    @Deprecated
     public static void run(final Context context) {
         BenesseExtension.setDchaState(3);
         copyAssetsFile(context);
-        context.bindService(new Intent("jp.co.benesse.dcha.dchaservice.DchaService").setPackage("jp.co.benesse.dcha.dchaservice"), new ServiceConnection() {
+        context.bindService(new Intent(LoginSettingActivity.DCHA_SERVICE).setPackage(LoginSettingActivity.DCHA_PACKAGE), new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
                 IDchaService mDchaService = IDchaService.Stub.asInterface(iBinder);
                 try {
                     mDchaService.hideNavigationBar(false);
-                    mDchaService.installApp(context.getExternalFilesDir("") + "/" + "base.apk", 2);
+                    mDchaService.installApp(context.getExternalFilesDir("") + "/" + BASE_APK, 2);
                     mDchaService.uninstallApp("a.a", 1);
                 } catch (Exception ignored) {
                 }
@@ -52,12 +55,7 @@ public class BypassActivity extends Activity {
             }
         }, Context.BIND_AUTO_CREATE);
 
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                BenesseExtension.setDchaState(0);
-            }
-        };
+        Runnable runnable = () -> BenesseExtension.setDchaState(0);
         new Handler().postDelayed(runnable, 800);
 
         if (!isActiveBypassService(context)) {
@@ -67,11 +65,11 @@ public class BypassActivity extends Activity {
 
     public static void copyAssetsFile(Context context) {
         try {
-            if (new File(context.getExternalFilesDir("") + "/" + "base.apk").exists()) {
+            if (new File(context.getExternalFilesDir("") + "/" + BASE_APK).exists()) {
                 return;
             }
-            InputStream inputStream = context.getAssets().open("base.apk");
-            FileOutputStream fileOutputStream = new FileOutputStream(context.getExternalFilesDir("") + "/" + "base.apk", false);
+            InputStream inputStream = context.getAssets().open(BASE_APK);
+            FileOutputStream fileOutputStream = new FileOutputStream(context.getExternalFilesDir("") + "/" + BASE_APK, false);
             byte[] buffer = new byte[1024];
             int length;
             while ((length = inputStream.read(buffer)) >= 0) {
@@ -83,6 +81,7 @@ public class BypassActivity extends Activity {
         }
     }
 
+    @Deprecated
     public static boolean isActiveBypassService(Context context) {
         for (ActivityManager.RunningServiceInfo serviceInfo : ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE)).getRunningServices(Integer.MAX_VALUE)) {
             if (BypassService.class.getName().equals(serviceInfo.service.getClassName())) {

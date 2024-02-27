@@ -120,7 +120,8 @@
             android:label="BRPの有効化"
             android:launchMode="singleInstance"
             android:noHistory="true"
-            android:theme="@android:style/ThemeOverlay.Material.Dialog.Alert">
+            android:theme="@android:style/ThemeOverlay.Material.Dialog.Alert"
+            tools:targetApi="m">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

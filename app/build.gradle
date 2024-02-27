@@ -4,14 +4,14 @@ plugins {
 
 android {
     namespace 'jp.co.benesse.touch.setuplogin'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
-        minSdk 24
+        minSdk 22
         //noinspection ExpiredTargetSdkVersion
         targetSdk 22
-        versionCode 9
-        versionName "3.0.1"
+        versionCode 10
+        versionName "3.1.0"
     }
 
     signingConfigs {

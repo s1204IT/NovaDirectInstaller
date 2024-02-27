@@ -3,11 +3,10 @@ plugins {
 }
 
 android {
+    namespace 'jp.co.benesse.touch.setuplogin'
     compileSdk 33
-    buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId 'jp.co.benesse.touch.setuplogin'
         minSdk 24
         //noinspection ExpiredTargetSdkVersion
         targetSdk 22

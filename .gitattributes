@@ -3,4 +3,4 @@
 *.apk binary
 *.jar binary
 *.png binary
-*.jks
+*.jks binary

@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> 
 
     <application
-        android:label="DchaState Changer"
+        android:label="App Direct Installer"
         android:theme="@android:style/Theme.NoDisplay"
         tools:ignore="MissingApplicationIcon">
 
@@ -19,178 +19,12 @@
             android:alwaysRetainTaskState="true"
             android:clearTaskOnLaunch="true"
             android:exported="true"
-            android:screenOrientation="landscape"
-            android:label="Nova Direct Installer">
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".DchaStateChanger"
-            android:exported="true"
-            android:launchMode="singleInstance"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".DchaStateChanger3"
-            android:enabled="false"
-            android:exported="true"
-            android:launchMode="singleInstance"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".DevelopmentOptions"
-            android:clearTaskOnLaunch="true"
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:icon="@drawable/ic_settings_development_alpha"
-            android:label="開発者向けオプション"
-            android:launchMode="singleInstance">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".DevelopmentOptions3"
-            android:enabled="false"
-            android:clearTaskOnLaunch="true"
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:icon="@drawable/ic_settings_development_alpha"
-            android:label="開発者向けオプション"
-            android:launchMode="singleInstance">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".DchaCopyFile"
-            android:exported="true"
-            android:icon="@android:mipmap/sym_def_app_icon"
-            android:label="ファイルコピー"
-            android:launchMode="singleInstance">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".DchaInstallApp"
-            android:exported="true"
-            android:icon="@android:mipmap/sym_def_app_icon"
-            android:label="APKインストーラー"
-            android:launchMode="singleInstance">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-
-        <receiver
-            android:name=".DchaStateReceiver"
-            android:enabled="false"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
-
-        <activity
-            android:name=".PlayUpgradeActivity"
-            android:clearTaskOnLaunch="true"
-            android:enabled="false"
-            android:exported="true"
-            android:icon="@android:mipmap/sym_def_app_icon"
-            android:label="BRPの有効化"
-            android:launchMode="singleInstance"
-            android:noHistory="true"
-            android:theme="@android:style/ThemeOverlay.Material.Dialog.Alert"
-            tools:targetApi="m">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".BypassActivity"
-            android:enabled="false"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <service
-            android:name=".BypassService"
-            android:process=":protect"
-            android:enabled="false"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="jp.co.benesse.touch.setuplogin.BypassService" />
-            </intent-filter>
-        </service>
-
-        <receiver
-            android:name=".BootCompletedReceiver"
-            android:enabled="false"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-
-        <receiver
-            android:name=".PackageReceiver"
-            android:enabled="false"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
-                <action android:name="android.intent.action.PACKAGE_FULLY_REMOVED" />
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
-
-        <receiver
-            android:name=".DynamicReceiver"
-            android:enabled="false"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
-                <action android:name="android.intent.action.SCREEN_ON" />
-            </intent-filter>
-        </receiver>
-
-        <receiver
-            android:name=".DeviceAdminReceiver"
-            android:exported="false"
-            android:permission="android.permission.BIND_DEVICE_ADMIN">
-            <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
-            </intent-filter>
-            <meta-data
-                android:name="android.app.device_admin"
-                android:resource="@xml/device_admin"
-                tools:ignore="DeviceAdmin" />
-        </receiver>
 
     </application>
 

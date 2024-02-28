@@ -5,9 +5,9 @@
 # IntelliJ
 /.idea/
 # Gradle Build
+/build/
 /app/build/
+/CT?/build/
 # Android Studio Signing APK
-/app/debug/
 /app/release/
-# jadx
-/app/libs/*.jar.cache/
+/CT?/release/

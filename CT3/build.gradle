@@ -3,21 +3,21 @@ plugins {
 }
 
 android {
-    namespace 'jp.co.benesse.touch.setuplogin'
+    namespace 'me.s1204.benesse.touch.support'
     compileSdk 34
 
     defaultConfig {
-        minSdk 22
+        minSdk 24
         //noinspection ExpiredTargetSdkVersion
         targetSdk 22
-        versionCode 10
-        versionName "4.0.0"
-        proguardFiles += 'proguard-rules.pro'
+        versionCode 1
+        versionName "1.0.0"
+        proguardFiles += '../app/proguard-rules.pro'
     }
 
     signingConfigs {
         android {
-            storeFile file('android.jks')
+            storeFile file('../app/android.jks')
             storePassword 'android'
             keyAlias 'android'
             keyPassword 'android'
@@ -37,6 +37,5 @@ android {
 }
 
 dependencies {
-    compileOnly files('libs/BenesseExtension.jar')
-    implementation files('libs/DchaService.jar')
+    compileOnly files('../app/libs/BenesseExtension.jar')
 }

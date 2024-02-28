@@ -1,6 +1,6 @@
 <connect_info>
-  <environment>NovaDirectInstaller の改造機能が有効です</environment>
-  <version>試験的</version>
+  <environment>AppDirectInstaller による改造機能が有効です</environment>
+  <version>開発：しゅーご / Syuugo</version>
   <id>townak</id>
   <url>https://subcontent.s1204.me/</url>
   <text></text>

@@ -5,15 +5,9 @@
 > [!NOTE]
 > 現在、移行作業中！
 
-TODO:
-
-- [ ] CT2のAPKすり替えの実装
-- [ ] ループプログレスバーを実装
-- [ ] ストアアプリを実装
-
 ---
 
-SDカードから [**CPad Customize Tool**](https://github.com/Kobold831/CPadCustomizeTool) や [**Nova Launcher**](https://novalauncher.com)等のアプリをインストールするためのアプリです｡
+[**CPad Customize Tool**](https://github.com/Kobold831/CPadCustomizeTool) や [**Nova Launcher**](https://novalauncher.com)等のアプリをインストールするためのアプリです｡
 
 [![Build](https://github.com/s1204IT/NovaDirectInstaller/actions/workflows/build.yml/badge.svg?branch=main&event=push)](https://github.com/s1204IT/NovaDirectInstaller/actions/workflows/build.yml)
 

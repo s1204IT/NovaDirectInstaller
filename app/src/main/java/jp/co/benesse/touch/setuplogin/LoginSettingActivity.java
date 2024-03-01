@@ -30,12 +30,11 @@ public class LoginSettingActivity extends Activity {
 
     IDchaService mDchaService;
 
-    // Based by Kobold831
-    private String copyAssetsFile(String model) throws IOException{
+    // TODO: 機能修正
+    private String copyAssetsFile(String model) throws IOException {
         final String ASSET_APK = model + APK_EXT;
-        final String APK_PATH = getApplicationContext().getFilesDir().getPath() + "/" + ASSET_APK;
-        InputStream inputStream = getApplicationContext().getAssets().open(ASSET_APK);
-        FileOutputStream fileOutputStream = new FileOutputStream(APK_PATH, false);
+        InputStream inputStream = getAssets().open(ASSET_APK);
+        FileOutputStream fileOutputStream = openFileOutput(ASSET_APK, MODE_PRIVATE);
         byte[] buffer = new byte[1024];
         int length;
         while ((length = inputStream.read(buffer)) >= 0) {
@@ -43,9 +42,10 @@ public class LoginSettingActivity extends Activity {
         }
         fileOutputStream.close();
         inputStream.close();
-        return APK_PATH;
+        return getFilesDir() + ASSET_APK;
     }
 
+    @Deprecated
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,21 +54,16 @@ public class LoginSettingActivity extends Activity {
         final String BC_PASSWORD_HIT_FLAG = "bc_password_hit";
         final int PASSWORD_FLAG = 1;
         final int UNDIGICHALIZE = 0;
-        final int DIGICHALIZING_DL_COMPLETE = 2;
-        final int DIGICHALIZED = 3;
         final int INSTALL_FLAG = 2;
-        final int UNINSTALL_FLAG = 1;
         final int REBOOT_DEVICE = 0;
-        final String DSW_PACKAGE = "jp.co.benesse.dcha.setupwizard";
         final String DSS_PACKAGE = "jp.co.benesse.dcha.systemsettings";
         final String DSS_ACTIVITY = DSS_PACKAGE + ".TabletInfoSettingActivity";
+        final String LAUNCHER2 = "com.android.launcher2";
         final String LAUNCHER3 = "com.android.launcher3";
-        final String CUSTOMIZE_TOOL = "com.saradabar.cpadcustomizetool";
         final String KOBOLD_STORE = "com.saradabar.vending";
 
         // DchaSystemSettings を呼び出し
         startActivity(new Intent().setClassName(DSS_PACKAGE, DSS_ACTIVITY));
-        // (ループ)プログレスバー実装 //
         // 再起動時にADBの状態を保持する
         Settings.System.putInt(getContentResolver(), BC_PASSWORD_HIT_FLAG, PASSWORD_FLAG);
 
@@ -84,24 +79,23 @@ public class LoginSettingActivity extends Activity {
                     mDchaService.hideNavigationBar(false);
 
                     // インストール部分 //
-                    // CT2はバイパス必須
                     //mDchaService.installApp(copyAssetsFile("ALL"), INSTALL_FLAG);
+                    mDchaService.installApp("/sdcard/ALL.apk", INSTALL_FLAG);
                     if (CT_MODEL.equals(CT3) && !Build.ID.startsWith("01")) {
                         mDchaService.installApp(copyAssetsFile("CT3"), INSTALL_FLAG);
                     } else if (CT_MODEL.equals(CTX) || CT_MODEL.equals(CTZ)) {
                         mDchaService.installApp(copyAssetsFile("CTX"), INSTALL_FLAG);
                     }
 
-                    // Launcher3 の関連付けを解除
+                    // 規定ランチャーの関連付けを解除
+                    mDchaService.clearDefaultPreferredApp(LAUNCHER2);
                     mDchaService.clearDefaultPreferredApp(LAUNCHER3);
                     // 既定のランチャーを変更 (CTX/Z のみ機能)
                     mDchaService.setDefaultPreferredHomeApp(KOBOLD_STORE);
-                    // DchaSetupWizard をタスクキル
-                    mDchaService.removeTask(DSW_PACKAGE);
                     // 再起動
                     mDchaService.rebootPad(REBOOT_DEVICE, null);
-                    // このアプリを削除
-                    mDchaService.uninstallApp(getPackageName(), UNINSTALL_FLAG);
+                    // 自己アンインストール
+                    mDchaService.uninstallApp(getPackageName(), INSTALL_FLAG+1);
                 } catch (RemoteException | IOException ignored) {
                 }
                 unbindService(this);

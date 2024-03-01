@@ -11,3 +11,5 @@
 # Android Studio Signing APK
 /app/release/
 /CT?/release/
+# Bundled APK
+/app/src/main/assets/*.apk

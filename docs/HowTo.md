@@ -15,8 +15,19 @@
 
 ## 必要なもの
 
-- チャレンジパッド ３ / Neo / Next  
-  **※初期化直後の状態のものを使用して下さい**
+- チャレンジパッド ２ / ３ / Neo / Next  
+> [!IMPORTANT]
+> **※初期化直後の状態のものを使用して下さい**
+
+> [!NOTE]
+> チャレンジパッド２の場合は次のビルド番号のみ使用可能です。  
+> #### TAB-A03-BS
+> - 01.16.000
+> #### TAB-A03-BR / BR2 / BR2B
+> - 02.02.000
+> - 02.04.000
+>
+> それ以前のビルドでは署名チェック機能が実装されているため、AppDirectInstaller を使用する事は出来ません。
 - microSDカード
 - SDカードを読み書き可能な端末
 
@@ -56,7 +67,7 @@
 **Nova Launcher** と **カスタマイズツール** をインストールしてください。
 
 > [!WARNING]
-> チャレンジパッド３の場合､ 起動時に｢`ホームアプリを選択`｣のポップアップが出るので､ ｢<kbd><b>Kobold Store</b></kbd>｣を選択後､ ｢<kbd><b>常時</b></kbd>｣を選択して続行します｡
+> チャレンジパッド２ / ３の場合､ 起動時に｢`ホームアプリを選択`｣のポップアップが出るので､ ｢<kbd><b>配布アプリ</b></kbd>｣を選択後､ ｢<kbd><b>常時</b></kbd>｣を選択して続行します｡
 
 これで簡易的な改造は完了です｡
 
@@ -66,7 +77,7 @@
 
 [**Dhizuku**](https://github.com/iamr0s/Dhizuku) とは、端末所有者の権限を共有するためのアプリです。
 
-カスタマイズツール、[**Aurora Store**](https://gitlab.com/AuroraOSS/AuroraStore)、[**Dhizuku DPC**](https://github.com/Kobold831/DhizukuDPC)([Test DPC](https://github.com/googlsamples/android-testdpc) ベース) 間で権限を共有できます。
+[**カスタマイズツール**](https://github.com/Kobold831/CPadCustomizeTool)、[**Aurora Store**](https://gitlab.com/AuroraOSS/AuroraStore)、[**Dhizuku DPC**](https://github.com/Kobold831/DhizukuDPC)([Test DPC](https://github.com/googlsamples/android-testdpc) ベース) 間で権限を共有できます。
 
 **Dhizuku** の機能を使用するには ADB が必要です。
 ```
